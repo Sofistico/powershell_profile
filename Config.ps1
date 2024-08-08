@@ -106,7 +106,7 @@ New-Item -Path $Env:UserProfile\Documents\PowerShell\Profile.ps1 -ItemType Symbo
     Remove-Item -Path $Env:Temp\submodule.ps1 -Force
 }
 
-# todo: Configure to get my dotfiles for neovim and wezterm
+# todo: Configure to get my dotfiles for neovim and wezterm and/or any other install that i might need
 
 Write-Output "Install complete! Please reboot your machine/worksation!"
 Start-Sleep -Seconds 10
