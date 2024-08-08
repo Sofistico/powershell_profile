@@ -53,7 +53,10 @@ $WinGet = @(
     "Microsoft.PowerShell",
     "BurntSushi.ripgrep.MSVC",
     "Git.Git",
-    "ajeetdsouza.zoxide"
+    "ajeetdsouza.zoxide",
+    "sharkdp.fd",
+    "LLVM.LLVM",
+    "OpenJS.NodeJS"
     )
 foreach ($item in $WinGet) {
     Install-WinGetApp -PackageID "$item"
