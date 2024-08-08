@@ -67,7 +67,8 @@ $WinGet = @(
     "GnuWin32.Tar",
     "Discord.Discord",
     #"Valve.Steam",
-    "Microsoft.PowerShell"
+    "Microsoft.PowerShell",
+    "BurntSushi.ripgrep.MSVC"
     )
 foreach ($item in $WinGet) {
     Install-WinGetApp -PackageID "$item"
@@ -87,6 +88,24 @@ if (!$wslInstalled) {
     Start-Process -FilePath "PowerShell" -ArgumentList "wsl","--install" -Verb RunAs -Wait -WindowStyle Hidden
 }
 Install-WinGetApp -PackageID Canonical.Ubuntu.2204
+
+# Install my PowerShell dot files
+if (!(Test-Path -Path "$Env:UserProfile\dotsofis" -PathType Container)) {
+    Write-Verbose -Message "Install my PowerShell dot files..."
+    Start-Process -FilePath "PowerShell" -ArgumentList "git","clone","https://github.com/Sofistico/powershell_profile.git","$Env:UserProfile\dotsofis" -Wait -NoNewWindow
+@'
+New-Item -Path $Env:UserProfile\Documents\PowerShell -ItemType Directory -ErrorAction Ignore
+Remove-Item -Path $Env:UserProfile\Documents\PowerShell\Profile.ps1 -Force
+New-Item -Path $Env:UserProfile\Documents\PowerShell\Profile.ps1 -ItemType SymbolicLink -Target $Env:UserProfile\dotsofis\Profile.ps1
+'@ > $Env:Temp\dotsofis.ps1
+   Start-Process -FilePath "PowerShell" -ArgumentList "$Env:Temp\dotsofis.ps1" -Verb RunAs -Wait -WindowStyle Hidden
+   Remove-Item -Path $Env:Temp\dotsofis.ps1 -Force
+@'
+'@ > $Env:Temp\submodule.ps1
+    Start-Process -FilePath "PowerShell" -ArgumentList "$Env:Temp\submodule.ps1" -Wait -NoNewWindow
+    Remove-Item -Path $Env:Temp\submodule.ps1 -Force
+}
+
 Write-Output "Install complete! Please reboot your machine/worksation!"
 Start-Sleep -Seconds 10
 
