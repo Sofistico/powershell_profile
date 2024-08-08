@@ -12,6 +12,23 @@ function Set-Lazy {
 	nvim
 }
 
+function Install-WinGetApp {
+    param (
+        [string]$PackageID
+    )
+    Write-Verbose -Message "Preparing to install $PackageID"
+    # Added accept options based on this issue - https://github.com/microsoft/winget-cli/issues/1559
+    #$listApp = winget list --exact -q $PackageID --accept-source-agreements
+    #if (winget list --exact --id "$PackageID" --accept-source-agreements) {
+    #    Write-Verbose -Message "Package $PackageID already installed! Skipping..."
+    #} else {
+    #    Write-Verbose -Message "Installing $Package"
+    #    winget install --silent --id "$PackageID" --accept-source-agreements --accept-package-agreements
+    #}
+    Write-Verbose -Message "Installing $Package"
+    winget install --silent --id "$PackageID" --accept-source-agreements --accept-package-agreements
+}
+
 Set-Alias -Name kickstart -Value Set-Kickstart
 Set-Alias -Name lazy -Value Set-Lazy
 
