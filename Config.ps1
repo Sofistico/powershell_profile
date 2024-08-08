@@ -1,18 +1,5 @@
 #based on https://gist.github.com/mikepruett3/7ca6518051383ee14f9cf8ae63ba18a7
 
-function Install-ScoopApp {
-    param (
-        [string]$Package
-    )
-    Write-Verbose -Message "Preparing to install $Package"
-    if (! (scoop info $Package).Installed ) {
-        Write-Verbose -Message "Installing $Package"
-        scoop install $Package
-    } else {
-        Write-Verbose -Message "Package $Package already installed! Skipping..."
-    }
-}
-
 function Install-WinGetApp {
     param (
         [string]$PackageID
@@ -38,10 +25,6 @@ if ((Get-ExecutionPolicy -Scope CurrentUser) -notcontains "Unrestricted") {
     Start-Sleep -Seconds 10
     Break
 }
-Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
-
-Install-WinGetApp -PackageID Git.Git
-Install-WinGetApp -PackageID ajeetdsouza.zoxide
 
 $WinGet = @(
     "Microsoft.DotNet.Runtime.3_1",
@@ -68,7 +51,9 @@ $WinGet = @(
     "Discord.Discord",
     #"Valve.Steam",
     "Microsoft.PowerShell",
-    "BurntSushi.ripgrep.MSVC"
+    "BurntSushi.ripgrep.MSVC",
+    "Git.Git",
+    "ajeetdsouza.zoxide"
     )
 foreach ($item in $WinGet) {
     Install-WinGetApp -PackageID "$item"
