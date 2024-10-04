@@ -53,7 +53,6 @@ $WinGet = @(
     "Microsoft.PowerShell",
     "BurntSushi.ripgrep.MSVC",
     "Git.Git",
-    "ajeetdsouza.zoxide",
     "sharkdp.fd",
     "LLVM.LLVM",
     "OpenJS.NodeJS"
