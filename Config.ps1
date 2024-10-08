@@ -55,7 +55,8 @@ $WinGet = @(
     "Git.Git",
     "sharkdp.fd",
     "LLVM.LLVM",
-    "OpenJS.NodeJS"
+    "OpenJS.NodeJS",
+    "JesseDuffield.lazygit"
     )
 foreach ($item in $WinGet) {
     Install-WinGetApp -PackageID "$item"
