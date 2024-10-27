@@ -102,4 +102,4 @@ Start-Sleep -Seconds 10
 
 #You can get and run the entire script on a new machine by invoking the following command.
 
-#PowerShell -NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://github.com/Sofistico/powershell_profile/blob/main/Config.ps1'))"
+#PowerShell -NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Sofistico/powershell_profile/refs/heads/main/Config.ps1'))"
