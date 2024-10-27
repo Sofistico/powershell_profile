@@ -56,7 +56,8 @@ $WinGet = @(
     "sharkdp.fd",
     "LLVM.LLVM",
     "OpenJS.NodeJS",
-    "JesseDuffield.lazygit"
+    "JesseDuffield.lazygit",
+    "MSYS2.MSYS2"
     )
 foreach ($item in $WinGet) {
     Install-WinGetApp -PackageID "$item"
@@ -67,7 +68,7 @@ winget install Microsoft.VisualStudioCode --override '/SILENT /mergetasks="!runc
 
 # Pin Google Chrome to Taskbar
 Write-Verbose -Message "Pin Google Chrome to Taskbar..."
-Start-Process -FilePath "PowerShell" -ArgumentList "syspin","'$Env:ProgramData\Microsoft\Windows\Start Menu\Programs\Google Chrome.lnk'","c:5386" -Wait -NoNewWindow
+#Start-Process -FilePath "PowerShell" -ArgumentList "syspin","'$Env:ProgramData\Microsoft\Windows\Start Menu\Programs\Google Chrome.lnk'","c:5386" -Wait -NoNewWindow
 
 # Install Windows SubSystems for Linux
 $wslInstalled = Get-Command "wsl" -CommandType Application -ErrorAction Ignore
