@@ -1,5 +1,3 @@
-Invoke-Expression (& { (zoxide init powershell | Out-String) })
-
 # Load work functions
 $wf = "$PSScriptRoot\WorkFunctions.ps1"
 if (Test-Path $wf -ErrorAction SilentlyContinue) {
@@ -38,3 +36,6 @@ function Watch-Command {
 }
 
 Set-Alias -Name v -Value nvim
+
+Invoke-Expression (& { (zoxide init powershell | Out-String) })
+Invoke-Expression (&starship init powershell)
