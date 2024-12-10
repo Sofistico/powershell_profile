@@ -58,6 +58,7 @@ $WinGet = @(
     "OpenJS.NodeJS",
     "JesseDuffield.lazygit",
     "MSYS2.MSYS2",
+    "Starship.Starship",
     "OpenJS.NodeJS"
     )
 foreach ($item in $WinGet) {
