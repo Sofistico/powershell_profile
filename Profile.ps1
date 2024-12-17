@@ -38,6 +38,26 @@ function Watch-Command {
   }
 }
 
+function gitacp {
+    param (
+        [Parameter(ValueFromRemainingArguments = $true)]
+        [String[]] $message
+    )
+    if($null -eq $message){
+        echo "> message is null"
+        return
+    }
+    echo "> git add ."
+    git add .
+
+    echo "> git commit -a -m '$message'"
+
+    git commit -a -m "$message"
+
+    echo "> git push"
+    git push
+}
+
 Set-Alias -Name v -Value nvim
 
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
