@@ -16,8 +16,7 @@ function Get-GitCheckout {
   param()
   git checkout $args
 }
-# Regularly used in unix, but now for Windows
-function which { param($bin) Get-Command $bin }
+
 # Another unix regular that I wanted to replicate for Windows
 function Watch-Command {
   [alias('watch')]
