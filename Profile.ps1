@@ -1,13 +1,18 @@
-Invoke-Expression (& { (zoxide init powershell | Out-String) })
-Invoke-Expression (&starship init powershell)
-
 # Load work functions
 $wf = "$PSScriptRoot\WorkFunctions.ps1"
 if (Test-Path $wf -ErrorAction SilentlyContinue) {
   . $wf
 }
 
-$env:FZF_DEFAULT_OPTS=@"
+# FZF CONFIG
+
+# Ref: https://github.com/catppuccin/powershell#profile-usage
+# https://github.com/catppuccin/fzf - not use background for transparent
+$env:FZF_DEFAULT_OPTS = @"
+--color=hl:$($Flavor.Red),fg:$($Flavor.Text),header:$($Flavor.Red)
+--color=info:$($Flavor.Mauve),pointer:$($Flavor.Rosewater),marker:$($Flavor.Rosewater)
+--color=fg+:$($Flavor.Text),prompt:$($Flavor.Mauve),hl+:$($Flavor.Red)
+--color=border:$($Flavor.Surface2)
 --layout=reverse
 --cycle
 --scroll-off=5
@@ -26,7 +31,7 @@ $env:FZF_DEFAULT_OPTS=@"
 function _fzf_open_path
 {
   param (
-    [Parameter(Mandatory=$true)]
+    [Parameter(Mandatory = $true)]
     [string]$input_path
   )
   if ($input_path -match "^.*:\d+:.*$")
@@ -38,18 +43,18 @@ function _fzf_open_path
     return
   }
   $cmds = @{
-    'bat' = { bat $input_path }
-    'cat' = { Get-Content $input_path }
-    'cd' = {
+    'bat'    = { bat $input_path }
+    'cat'    = { Get-Content $input_path }
+    'cd'     = {
       if (Test-Path $input_path -PathType Leaf)
       {
         $input_path = Split-Path $input_path -Parent
       }
       Set-Location $input_path
     }
-    'nvim' = { nvim $input_path }
+    'nvim'   = { nvim $input_path }
     'remove' = { Remove-Item -Recurse -Force $input_path }
-    'echo' = { Write-Output $input_path }
+    'echo'   = { Write-Output $input_path }
   }
   $cmd = $cmds.Keys | fzf --prompt 'Select command> '
   & $cmds[$cmd]
@@ -96,9 +101,6 @@ function rgg
   _fzf_open_path $(_fzf_get_path_using_rg)
 }
 
-
-# SET KEYBOARD SHORTCUTS TO CALL FUNCTION
-
 Set-PSReadLineKeyHandler -Key "Ctrl+t" -ScriptBlock {
   [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
   [Microsoft.PowerShell.PSConsoleReadLine]::Insert("fdg")
@@ -134,3 +136,6 @@ function gitacp {
 Set-Alias -Name v -Value nvim
 
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
+
+Invoke-Expression (& { (zoxide init powershell | Out-String) })
+Invoke-Expression (&starship init powershell)
