@@ -1,5 +1,29 @@
 #based on https://gist.github.com/mikepruett3/7ca6518051383ee14f9cf8ae63ba18a7
 
+# Install Scoop, if not already installed
+#$scoopInstalled = Get-Command "scoop"
+if ( !(Get-Command -Name "scoop" -CommandType Application -ErrorAction SilentlyContinue | Out-Null) ) {
+    Write-Verbose -Message "Installing Scoop..."
+    iex ((New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh'))
+}
+
+if (!(Get-AppPackage -name "Microsoft.DesktopAppInstaller")) {
+    Write-Verbose -Message "Installing WinGet..."
+
+function Install-ScoopApp {
+    param (
+        [string]$Package
+    )
+    Write-Verbose -Message "Preparing to install $Package"
+    if (! (scoop info $Package).Installed ) {
+        Write-Verbose -Message "Installing $Package"
+        scoop install $Package
+    } else {
+        Write-Verbose -Message "Package $Package already installed! Skipping..."
+    }
+}
+
+
 function Install-WinGetApp {
     param (
         [string]$PackageID
@@ -26,6 +50,13 @@ if ((Get-ExecutionPolicy -Scope CurrentUser) -notcontains "Unrestricted") {
     Break
 }
 
+## Add Buckets
+Enable-Bucket -Bucket "extras"
+Enable-Bucket -Bucket "nerd-fonts"
+Enable-Bucket -Bucket "java"
+Enable-Bucket -Bucket "nirsoft"
+scoop bucket add foosel https://github.com/foosel/scoop-bucket
+
 $WinGet = @(
     "Microsoft.DotNet.Runtime.3_1",
     "Microsoft.DotNet.Runtime.5",
@@ -39,9 +70,7 @@ $WinGet = @(
     "Microsoft.DotNet.SDK.7",
     "Microsoft.DotNet.SDK.7",
     "Microsoft.DotNet.SDK.8",
-    "junegunn.fzf",
-    "Neovim.Neovim",
-    "ajeetdsouza.zoxide",
+    "Microsoft.VCRedist.2015+.x64",
     "Python.Python.3.11",
     "wez.wezterm",
     "Google.Chrome",
@@ -53,16 +82,43 @@ $WinGet = @(
     "Microsoft.PowerShell",
     "BurntSushi.ripgrep.MSVC",
     "Git.Git",
-    "sharkdp.fd",
     "LLVM.LLVM",
     "OpenJS.NodeJS",
-    "JesseDuffield.lazygit",
     "MSYS2.MSYS2",
-    "Starship.Starship",
-    "OpenJS.NodeJS"
+    "OpenJS.NodeJS",
+    "ezwinports.make"
     )
 foreach ($item in $WinGet) {
     Install-WinGetApp -PackageID "$item"
+}
+
+$Scoop = @(
+  "fzf",
+  "neovim",
+  "zoxide",
+  "fd",
+  "starship",
+  "lazygit",
+  "nu",
+  "7zip",
+  "bat",
+  "cmake",
+  "dog",
+  "eza",
+  "gping",
+  "ntop",
+  "nmap",
+  "luarocks",
+  "lua",
+  #"posh-git",
+  "pueue",
+  "procs",
+  "yazi",
+  "tokei"
+)
+
+foreach ($item in $Scoop) {
+        Install-ScoopApp -Package "$item"
 }
 
 # Custom WinGet install for VSCode
