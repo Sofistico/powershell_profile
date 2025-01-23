@@ -114,7 +114,9 @@ $Scoop = @(
   "pueue",
   "procs",
   "yazi",
-  "tokei"
+  "tokei",
+  "jo",
+  "jq"
 )
 
 foreach ($item in $Scoop) {
