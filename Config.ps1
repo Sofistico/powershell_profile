@@ -74,7 +74,6 @@ $WinGet = @(
     "Python.Python.3.11",
     "wez.wezterm",
     "Google.Chrome",
-    "RARLab.WinRAR",
     "cURL.cURL",
     "GnuWin32.Tar",
     "Discord.Discord",
@@ -116,7 +115,8 @@ $Scoop = @(
   "yazi",
   "tokei",
   "jo",
-  "jq"
+  "jq",
+  "gdb"
 )
 
 foreach ($item in $Scoop) {
