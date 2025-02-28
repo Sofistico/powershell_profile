@@ -47,6 +47,8 @@ if ((Get-ExecutionPolicy -Scope CurrentUser) -notcontains "Unrestricted") {
     Break
 }
 
+Install-WinGetApp -PackageID "Git.Git"
+
 ## Add Buckets
 scoop bucket add extras
 scoop bucket add nerd-fonts
@@ -76,7 +78,6 @@ $WinGet = @(
     #"Valve.Steam",
     "Microsoft.PowerShell",
     "BurntSushi.ripgrep.MSVC",
-    "Git.Git",
     "LLVM.LLVM",
     "OpenJS.NodeJS",
     "MSYS2.MSYS2",
