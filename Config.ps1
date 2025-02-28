@@ -99,6 +99,7 @@ $Scoop = @(
   "fd",
   "starship",
   "lazygit",
+  "lazydocker",
   "nu",
   "7zip",
   "bat",
