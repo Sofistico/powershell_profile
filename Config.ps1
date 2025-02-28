@@ -74,6 +74,8 @@ $WinGet = @(
     "wez.wezterm",
     "Google.Chrome",
     "cURL.cURL",
+    "Docker.DockerDesktop",
+    "dbeaver.dbeaver",
 
     #"Valve.Steam",
     "Microsoft.PowerShell",
