@@ -48,10 +48,10 @@ if ((Get-ExecutionPolicy -Scope CurrentUser) -notcontains "Unrestricted") {
 }
 
 ## Add Buckets
-Enable-Bucket -Bucket "extras"
-Enable-Bucket -Bucket "nerd-fonts"
-Enable-Bucket -Bucket "java"
-Enable-Bucket -Bucket "nirsoft"
+scoop bucket add extras
+scoop bucket add nerd-fonts
+scoop bucket add java
+scoop bucket add nirsoft
 scoop bucket add foosel https://github.com/foosel/scoop-bucket
 
 $WinGet = @(
@@ -72,8 +72,7 @@ $WinGet = @(
     "wez.wezterm",
     "Google.Chrome",
     "cURL.cURL",
-    "GnuWin32.Tar",
-    "Discord.Discord",
+
     #"Valve.Steam",
     "Microsoft.PowerShell",
     "BurntSushi.ripgrep.MSVC",
@@ -82,7 +81,9 @@ $WinGet = @(
     "OpenJS.NodeJS",
     "MSYS2.MSYS2",
     "OpenJS.NodeJS",
-    "ezwinports.make"
+    "ezwinports.make",
+    "GnuWin32.Tar",
+    "Discord.Discord"
     )
 foreach ($item in $WinGet) {
     Install-WinGetApp -PackageID "$item"
