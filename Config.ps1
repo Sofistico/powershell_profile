@@ -2,7 +2,7 @@
 
 # Install Scoop, if not already installed
 #$scoopInstalled = Get-Command "scoop"
-if ( !(Get-Command -Name "scoop" -CommandType Application -ErrorAction SilentlyContinue | Out-Null) ) {
+if ( !(Get-Command -Name "scoop") ) {
     Write-Verbose -Message "Installing Scoop..."
     iex ((New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh'))
 }
