@@ -7,9 +7,6 @@ if ( !(Get-Command -Name "scoop" -CommandType Application -ErrorAction SilentlyC
     iex ((New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh'))
 }
 
-if (!(Get-AppPackage -name "Microsoft.DesktopAppInstaller")) {
-    Write-Verbose -Message "Installing WinGet..."
-
 function Install-ScoopApp {
     param (
         [string]$Package
