@@ -76,6 +76,7 @@ $WinGet = @(
     "cURL.cURL",
     "Docker.DockerDesktop",
     "dbeaver.dbeaver",
+    "7zip.7zip",
 
     #"Valve.Steam",
     "Microsoft.PowerShell",
