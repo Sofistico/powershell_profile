@@ -71,7 +71,6 @@ $WinGet = @(
     "Microsoft.DotNet.SDK.8",
     "Microsoft.VCRedist.2015+.x64",
     "Python.Python.3.11",
-    "wez.wezterm",
     "Google.Chrome",
     "cURL.cURL",
     "Docker.DockerDesktop",
@@ -120,7 +119,8 @@ $Scoop = @(
   "jo",
   "jq",
   "gdb",
-  "gcc"
+  "gcc",
+  "wezterm"
 )
 
 foreach ($item in $Scoop) {
