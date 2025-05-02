@@ -120,6 +120,7 @@ $Scoop = @(
   "jq",
   "gdb",
   "gcc",
+  "DejaVuSansMono-NF",
   "wezterm"
 )
 
