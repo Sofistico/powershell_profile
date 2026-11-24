@@ -113,6 +113,12 @@ Set-PSReadLineKeyHandler -Key "Ctrl+g" -ScriptBlock {
   [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
 }
 
+Set-PSReadLineKeyHandler -Key "Ctrl+d" -ScriptBlock {
+  [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
+  [Microsoft.PowerShell.PSConsoleReadLine]::Insert("exit")
+  [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
+}
+
 function gitacp {
     param (
         [Parameter(ValueFromRemainingArguments = $true)]
